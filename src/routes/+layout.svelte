@@ -10,5 +10,6 @@
 	{/if}
 </svelte:head>
 
-
-<slot />
+<section class="font-body">
+	<slot />
+</section>
