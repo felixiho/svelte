@@ -1,3 +1,7 @@
+import { addDynamicIconSelectors } from '@iconify/tailwind';
+// const { addIconSelectors } = require('@iconify/tailwind');
+
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -7,5 +11,8 @@ export default {
 			display: ['Lato', 'sans-serif']
 		}
 	},
-	plugins: []
+	plugins: [
+		// addIconSelectors(['mdi', 'mdi-light']),
+		addDynamicIconSelectors()
+	]
 };
