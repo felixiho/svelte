@@ -26,7 +26,6 @@
 			const message =
 				error.response?.data?.message || 'An error occurred getting results. Please try again.';
 
-			console.log(message);
 			searchStore.update((value) => ({ ...value, error: message, loadingNext: false }));
 		}
 	};

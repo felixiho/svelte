@@ -17,7 +17,7 @@
 				...value,
 				query,
 				results: items,
-        currentPage: 1,
+				currentPage: 1,
 				totalResults: Math.floor(total_count / PAGE_SIZE),
 				loading: false,
 				initialized: true
