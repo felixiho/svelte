@@ -1,9 +1,10 @@
 <script lang="ts">
 	export let columns: string[];
 	export let data: string[][];
+  export let loadingNext: boolean = false;
 </script>
 
-<table class="table-fixed w-full max-w-xl">
+<table class="{loadingNext ? " opacity-15" : ""} break-words table-fixed w-full max-w-xl">
 	<thead class="bg-black rounded-md">
 		<tr class="mb-8">
 			{#each columns as column}

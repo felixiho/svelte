@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import { page } from '$app/stores';
+	import Header from '$lib/modules/layout/header.svelte';
 </script>
 
 <svelte:head>
@@ -10,6 +11,9 @@
 	{/if}
 </svelte:head>
 
-<section class="font-body">
+<Header />
+<section class="font-body mb-6">
 	<slot />
 </section>
+
+ 

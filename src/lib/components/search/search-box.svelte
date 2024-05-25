@@ -1,9 +1,16 @@
 <script lang="ts">
-	export let value: string = '';
+	import { createEventDispatcher } from "svelte";
+
+	export let value: string;
+
+  const dispatch = createEventDispatcher<{
+		onResetSearch: void;
+	}>();
 	let placeholder: string = 'Search Github';
 
 	const reset = () => {
 		value = '';
+    dispatch('onResetSearch');
 	};
 </script>
 
