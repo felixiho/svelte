@@ -6,14 +6,23 @@ export const defaultSearchState: SearchResultsType = {
 	loadingNext: false,
 	initialized: false,
 	error: '',
-  query: '',
+	query: '',
 	results: [],
 	totalResults: 0,
-	currentPage: 1
+	currentPage: 1,
+	sortOrder: 'ASC'
 };
 
 export const searchStore = writable<SearchResultsType>(defaultSearchState);
 
 export const searchResult = derived(searchStore, ($searchStore) => {
-	return $searchStore.results.map((result) => [result.avatar_url, result.login, result.type]);
+	const result = $searchStore.results.map((result) => [
+		result.avatar_url,
+		result.login,
+		result.type
+	]);
+	result.sort((a, b) =>
+		$searchStore.sortOrder === 'ASC' ? a[1].localeCompare(b[1]) : b[1].localeCompare(a[1])
+	);
+	return result;
 });

@@ -1,14 +1,28 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
 	export let columns: string[];
 	export let data: string[][];
-  export let loadingNext: boolean = false;
+	export let loadingNext: boolean = false;
+
+	const dispatch = createEventDispatcher<{
+		changeSortOrder: void;
+	}>();
 </script>
 
-<table class="{loadingNext ? " opacity-15" : ""} break-words table-fixed w-full max-w-xl">
+<table class="{loadingNext ? ' opacity-15' : ''} break-words table-fixed w-full max-w-xl">
 	<thead class="bg-black rounded-md">
 		<tr class="mb-8">
 			{#each columns as column}
-				<th class="mb-8 py-4 text-white text-center">{column}</th>
+				<th class="mb-8 py-4 text-white text-center">
+					{#if column === 'Username'}
+						<button
+							on:click={() => dispatch('changeSortOrder')}
+							class="icon-[bx--sort] my-auto cursor-pointer"
+						></button>
+					{/if}
+					{column}
+				</th>
 			{/each}
 		</tr>
 	</thead>

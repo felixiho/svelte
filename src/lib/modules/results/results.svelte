@@ -7,7 +7,6 @@
 	import Loader from '$lib/components/loader/loader.svelte';
 	import { searchUser } from '../search/search';
 	import { PAGE_SIZE } from '$lib/components/pagination/constants';
-	import type { AxiosError } from 'axios';
 
 	const columns = ['Avatar', 'Username', 'Type'];
 
@@ -31,6 +30,13 @@
 			searchStore.update((value) => ({ ...value, error: message, loadingNext: false }));
 		}
 	};
+
+	const handleSort = () => {
+		searchStore.update((value) => ({
+			...value,
+			sortOrder: value.sortOrder === 'ASC' ? 'DESC' : 'ASC'
+		}));
+	};
 </script>
 
 <section class="px-4 mt-2 flex w-full justify-center items-center">
@@ -43,7 +49,7 @@
 			{#if $searchStore.loadingNext}
 				<Loader />
 			{/if}
-			<Table loadingNext={$searchStore.loadingNext} {columns} data={$searchResult} />
+			<Table on:changeSortOrder={handleSort} loadingNext={$searchStore.loadingNext} {columns} data={$searchResult} />
 			<Pagination
 				currentPage={$searchStore.currentPage}
 				totalPages={$searchStore.totalResults}
