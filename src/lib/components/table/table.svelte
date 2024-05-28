@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { createEventDispatcher } from 'svelte';
 
 	export let columns: string[];
@@ -28,7 +29,7 @@
 	</thead>
 	<tbody>
 		{#each data as row}
-			<tr class="border-b-[1px] hover:bg-[#00000008] transition ease-in duration-300">
+			<tr on:click={() => goto(`/${row[1]}`)} class="border-b-[1px] cursor-pointer hover:bg-[#00000008] transition ease-in duration-300">
 				{#each row as row_data, i}
 					{#if i === 0}
 						<td class=" flex justify-center py-2 mt-1"
